@@ -19,3 +19,5 @@ They include:
 * SelectItemScript.cs to provide the required behavior of a selectable item (with automatic / manual movement).
 * ShowReelScript.cs to create a show reel where items can be pushed, which are than framed by the script and shown.
 It supports player input to switch between different items (framed pictures) and exit.
+
+Scripts for GUI / Kinect Input / User Data saving, loading / User Charts and User Pictures loading are not included since they are not written by me.
