@@ -5,23 +5,23 @@ using System.Reflection;
 
 /// <summary>
 /// RowScript represents a row in the game scene.
-/// It is responsible to create all items and manage one row.
+/// It is responsible to create all items in a row and manage one row.
 /// </summary>
 public class RowScript : MonoBehaviour {
 	
 	// loaded in Inspector / Unity Editor.
 	public GameObject itemHolder;
 	
-	private GameObject 			m_cover;
-	private GameObject 			m_cloudParticle;
-	private List<GameObject> 	m_items;
-    private List<GameObject> 	m_clouds;
-    private string 				m_themeName;
-	private Vector3 			m_missingPosition;
-	private string 				m_missingElement;
-	private AudioClip 			m_coverSfx;
-	private AudioClip 			m_uncoverSfx;
-	private AudioSource 		m_audioSource;
+	private GameObject m_cover;
+	private GameObject m_cloudParticle;
+	private List<GameObject> m_items;
+    private List<GameObject> m_clouds;
+    private string m_themeName;
+	private Vector3 m_missingPosition;
+	private string m_missingElement;
+	private AudioClip m_coverSfx;
+	private AudioClip m_uncoverSfx;
+	private AudioSource m_audioSource;
 
 	/// <summary>
 	/// Function called once for each row (5 in total), to create row items, select theme, load textures etc.
