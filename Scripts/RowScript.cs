@@ -292,8 +292,8 @@ public class RowScript : MonoBehaviour {
 		
 		// Add cloud on top.
 		GameObject cloud = (GameObject) Instantiate(m_cloudParticle, 
-							new Vector3(-4f + x * 2.125f, Constants.CLOUDS_LOWER_Y, 2.25f * -z - 0.25f), 
-							Quaternion.identity);
+				new Vector3(-4f + x * 2.125f, Constants.CLOUDS_LOWER_Y, 2.25f * -z - 0.25f), 
+				Quaternion.identity);
 							
 		cloud.transform.parent = transform;
 		cloud.transform.eulerAngles = new Vector3(-90f, 0f, 0f);
@@ -334,8 +334,9 @@ public class RowScript : MonoBehaviour {
 									Constants.CLOUD_TIME + Constants.CLOUD_TIME_RANGE);
 			
 			Vector3 currPos = m_clouds[i].transform.position;
-			iTween.MoveTo(m_clouds[i],
-						iTween.Hash("y", Constants.CLOUDS_LOWER_Y, "easeType", "easeInOutExpo", "time", time));
+			iTween.MoveTo(m_clouds[i], iTween.Hash("y", Constants.CLOUDS_LOWER_Y, 
+					"easeType", "easeInOutExpo", 
+					"time", time));
 			
 			StartCoroutine(DestroyCloud(m_clouds[i]));
 		}
