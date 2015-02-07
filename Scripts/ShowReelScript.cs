@@ -105,8 +105,8 @@ public class ShowReelScript : MonoBehaviour {
 	
 		if (m_started && m_canMoveReel)
 		{
-        	float moveX = 0;
-        	
+			float moveX = 0;
+			
 			// replace with button.
 			if (Input.GetKeyDown(KeyCode.A))
 			{
@@ -131,8 +131,8 @@ public class ShowReelScript : MonoBehaviour {
 				
 				StartCoroutine(SwitchMoveReelFlag());
 			}
-        }
-    }
+		}
+	}
     
 	public void ClearItems() {
 		
