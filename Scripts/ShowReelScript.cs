@@ -8,13 +8,13 @@ using System.Collections.Generic;
 /// </summary>
 public class ShowReelScript : MonoBehaviour {
 	
-	private List<GameObject> 	m_frames;
-	private GameObject 			m_picturePlane;
-	private List<GameObject> 	m_showReelItems;
-	private int 				m_currentPicture;
-	private RowsManager 		m_rowsManager;
-	private bool 				m_started;
-	private bool 				m_canMoveReel;
+	private List<GameObject> m_frames;
+	private GameObject m_picturePlane;
+	private List<GameObject> m_showReelItems;
+	private int m_currentPicture;
+	private RowsManager m_rowsManager;
+	private bool m_started;
+	private bool m_canMoveReel;
 	private KinectGestureListener m_kinectGestureListener;
 	
 	void Start () {
@@ -107,9 +107,9 @@ public class ShowReelScript : MonoBehaviour {
 		{
         	float moveX = 0;
         	
-        	// replace with button.
-            if (Input.GetKeyDown(KeyCode.A))
-            {
+			// replace with button.
+			if (Input.GetKeyDown(KeyCode.A))
+			{
 				moveX = Constants.SHOWREEL_ITEM_XOFFSET;
 				m_currentPicture--;
 				
@@ -120,7 +120,7 @@ public class ShowReelScript : MonoBehaviour {
 				StartCoroutine(SwitchMoveReelFlag());
 			}
 			// replace with button.
-            else if (Input.GetKeyDown(KeyCode.D)) 
+			else if (Input.GetKeyDown(KeyCode.D)) 
 			{
 				moveX = -Constants.SHOWREEL_ITEM_XOFFSET;
 				m_currentPicture++;
@@ -134,26 +134,26 @@ public class ShowReelScript : MonoBehaviour {
         }
     }
     
-    public void ClearItems() {
-    	
+	public void ClearItems() {
+		
 		while (m_showReelItems.Count > 0) {
 			Destroy(m_showReelItems[0]);
 			m_showReelItems.RemoveAt(0);
 		}
-    }
+	}
     
 	private IEnumerator SwitchMoveReelFlag() {
-    	
-    	m_canMoveReel = false;
-    	Global.lockMouse = true;
-    	
+		
+		m_canMoveReel = false;
+		Global.lockMouse = true;
+		
 		yield return new WaitForSeconds(Constants.SHOWREEL_MOVE_TIME);
-    	
-    	m_canMoveReel = true;
+		
+		m_canMoveReel = true;
 		Global.lockMouse = false;
 	}
     
-    private void MoveItems(float moveX, bool instant = false) {
+	private void MoveItems(float moveX, bool instant = false) {
     
 		float time = instant ? 0f : Constants.SHOWREEL_MOVE_TIME;
 		iTween.MoveTo(gameObject, new Vector3(moveX + transform.position.x, 0, 0), time);
@@ -174,39 +174,39 @@ public class ShowReelScript : MonoBehaviour {
 		              new Vector3(Constants.SHOWREEL_ITEM_XOFFSET, 0, 0), Constants.SHOWREEL_MOVE_TIME);
 		
 		yield return new WaitForSeconds(Constants.SHOWREEL_MOVE_TIME);
-
-        if (!reset)
-        {
-            m_currentPicture = 0;
-            m_rowsManager.DestroyRows();
-            m_started = false;
-        }
-
-        if (Global.state == Global.State.ShowReel)
-        {
+		
+		if (!reset)
+		{
+		    m_currentPicture = 0;
+		    m_rowsManager.DestroyRows();
+		    m_started = false;
+		}
+		
+		if (Global.state == Global.State.ShowReel)
+		{
 			yield return new WaitForSeconds(Constants.COVER_MOVE_TIME);
-
-            this.gameObject.transform.position = Vector3.zero;
-            
-            m_currentPicture = 0;
-            // reset game.
-            m_rowsManager.DestroyRows();
-            if (reset == true) { m_rowsManager.ReSet(); Global.state = Global.State.Playing;}
-            else Global.state = Global.State.Menu;
-
-        }
-        
-        if (reset) 
-        {   
-            if (Global.state == Global.State.ShowImg && Game.SuperMode != Game.Difficulty.Hard) 
-            {
+		
+		    this.gameObject.transform.position = Vector3.zero;
+		    
+		    m_currentPicture = 0;
+		    // reset game.
+		    m_rowsManager.DestroyRows();
+		    if (reset == true) { m_rowsManager.ReSet(); Global.state = Global.State.Playing;}
+		    else Global.state = Global.State.Menu;
+		
+		}
+		
+		if (reset) 
+		{   
+		    if (Global.state == Global.State.ShowImg && Game.SuperMode != Game.Difficulty.Hard) 
+		    {
 			    StartCoroutine (m_rowsManager.OntoNextRow ());
 			    Global.state = Global.State.Playing;
-	        }
-	        else if (Global.state == Global.State.ShowImg && Game.SuperMode == Game.Difficulty.Hard) 
-	        {
+		    }
+		    else if (Global.state == Global.State.ShowImg && Game.SuperMode == Game.Difficulty.Hard) 
+		    {
 			    Global.state = Global.State.Timer;
 		    }
-        }
+		}
 	}
 }
