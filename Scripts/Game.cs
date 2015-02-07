@@ -56,7 +56,7 @@ public class Game : MonoBehaviour {
 	private SelectItemsManager 	m_selectItemsManager;
 	private PictureLoader 		m_pictureLoader;
 	private ShowReelScript 		m_showReel;
-    private GameObject 			m_kinectMouseInput;
+	private GameObject 			m_kinectMouseInput;
 	private GameObject 			m_logo;
 	
 	// Variables edited in Inspector / Unity Editor.
@@ -131,10 +131,10 @@ public class Game : MonoBehaviour {
 		sampleObject.AddComponent<ShowReelScript>();
 		sampleObject.transform.parent = transform;
 		m_showReel = sampleObject.GetComponent<ShowReelScript>();
-
+	
 		// Start Kinect Input.
-        m_kinectMouseInput = new GameObject(Constants.KINECT_MOUSE_INPUT_NAME);
-        m_kinectMouseInput.AddComponent<KinectMouseInput>();
+	    m_kinectMouseInput = new GameObject(Constants.KINECT_MOUSE_INPUT_NAME);
+	    m_kinectMouseInput.AddComponent<KinectMouseInput>();
         
         // and finally, lock mouse.
 		Global.lockMouse = true;
