@@ -27,8 +27,8 @@ public class SelectItemsManager : MonoBehaviour {
 		Init();
 	}
 
-    private void Init()
-    {
+	private void Init()
+	{
 		m_selectItems = new List<GameObject>();
 		m_selectItemsNames = new List<string>();
 		
@@ -137,9 +137,9 @@ public class SelectItemsManager : MonoBehaviour {
 							|| itemName == m_currentRowScript.GetMissingElement());
 				}
 				
-                item.GetComponent<SelectItemScript>().SetUpItem(itemName, selectTheme, i, gameObject.transform, m_showReel);
-                itemThemes.Add(selectTheme);
-                m_selectItems.Add(item);
+				item.GetComponent<SelectItemScript>().SetUpItem(itemName, selectTheme, i, gameObject.transform, m_showReel);
+				itemThemes.Add(selectTheme);
+				m_selectItems.Add(item);
 				m_selectItemsNames.Add(itemName);
 			}
 		}
