@@ -56,8 +56,8 @@ public class Game : MonoBehaviour {
 	private SelectItemsManager 	m_selectItemsManager;
 	private PictureLoader 		m_pictureLoader;
 	private ShowReelScript 		m_showReel;
-	private GameObject 			m_kinectMouseInput;
-	private GameObject 			m_logo;
+	private GameObject			m_kinectMouseInput;
+	private GameObject			m_logo;
 	
 	// Variables edited in Inspector / Unity Editor.
 	public AudioClip CoverSound;
