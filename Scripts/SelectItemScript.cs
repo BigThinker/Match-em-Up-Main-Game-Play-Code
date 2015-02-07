@@ -7,11 +7,11 @@ using System.Collections;
 /// </summary>
 public class SelectItemScript : MonoBehaviour {
 
-	private RowsManager 		m_rowsManager;
-    private ShowReelScript 		m_showReel;
-	private Vector3 			m_missingItemPosition;
-    private SelectItemsManager 	m_selectItemManager;
-    private Vector3 			m_startPoint;
+	private RowsManager m_rowsManager;
+	private ShowReelScript m_showReel;
+	private Vector3 m_missingItemPosition;
+	private SelectItemsManager m_selectItemManager;
+	private Vector3 m_startPoint;
 	
 	void Start () {
         
@@ -24,13 +24,13 @@ public class SelectItemScript : MonoBehaviour {
 		// set name.
 		gameObject.name = name;
 		// set texture
-        renderer.material.mainTexture = (Texture) Resources.Load("Pictures/" + themeName + "/" + name); 
+		renderer.material.mainTexture = (Texture) Resources.Load("Pictures/" + themeName + "/" + name); 
 		// set position.
 		transform.position = new Vector3(9f, Constants.ITEM_GROUND_LEVEL, 2.125f * -z - 1.3125f); // set position.
 		// set starting position.
 		m_startPoint = transform.position;
 		// save a reference to show reel.
-        m_showReel = showReel;
+		m_showReel = showReel;
         // set parent.
 		transform.parent = parent;
 	}
@@ -57,12 +57,12 @@ public class SelectItemScript : MonoBehaviour {
 		
 		yield return new WaitForSeconds(Constants.SELECT_ITEM_MOVE_TIME);
 		
-        m_selectItemManager.CreateRowCompleteParticles();
+		m_selectItemManager.CreateRowCompleteParticles();
         
 		yield return new WaitForSeconds(Constants.WAIT_BEFORE_UNCLOCK_MOUSE);
         
-        m_selectItemManager.DestroyParticles();
-        m_showReel.Add(this.gameObject);
+		m_selectItemManager.DestroyParticles();
+		m_showReel.Add(this.gameObject);
 		m_rowsManager.NextRow();
 	}
 	
