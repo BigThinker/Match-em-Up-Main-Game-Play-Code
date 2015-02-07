@@ -334,9 +334,8 @@ public class RowScript : MonoBehaviour {
 									Constants.CLOUD_TIME + Constants.CLOUD_TIME_RANGE);
 			
 			Vector3 currPos = m_clouds[i].transform.position;
-			iTween.MoveTo(m_clouds[i], iTween.Hash("y", Constants.CLOUDS_LOWER_Y,
-													"easeType", "easeInOutExpo",
-													"time", time));
+			iTween.MoveTo(m_clouds[i],
+						iTween.Hash("y", Constants.CLOUDS_LOWER_Y, "easeType", "easeInOutExpo", "time", time));
 			
 			StartCoroutine(DestroyCloud(m_clouds[i]));
 		}
@@ -358,8 +357,7 @@ public class RowScript : MonoBehaviour {
 		
 		m_audioSource.PlayOneShot(m_coverSfx);
 		
-		iTween.MoveBy(m_cover, 
-						new Vector3(Constants.COVER_MOVE_BY[(int)Game.Mode], 0, 0), 
+		iTween.MoveBy(m_cover, new Vector3(Constants.COVER_MOVE_BY[(int)Game.Mode], 0, 0),
 						Constants.CoverMoveTime);
 	}
 	
@@ -367,8 +365,7 @@ public class RowScript : MonoBehaviour {
 		
 		m_audioSource.PlayOneShot(m_uncoverSfx);
 		
-		iTween.MoveBy(m_cover, 
-						new Vector3(-Constants.COVER_MOVE_BY[(int)Game.Mode], 0, 0), 
+		iTween.MoveBy(m_cover, new Vector3(-Constants.COVER_MOVE_BY[(int)Game.Mode], 0, 0),
 						Constants.CoverMoveTime);
 	}
 	
