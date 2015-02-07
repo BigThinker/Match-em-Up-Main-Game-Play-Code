@@ -8,17 +8,17 @@ using System.Collections.Generic;
 /// </summary>
 public class RowsManager : MonoBehaviour {
 	
-	private GameObject 			m_objects;
-	private SelectItemsManager 	m_selectItemsManager;
-	private PictureLoader 		m_pictureLoader;
-	private ShowReelScript 		m_showReel;
-	private int 				m_currentRow;
-	private List<RowScript> 	m_rows;
-	private List<string> 		m_currentThemes;
-    private List<GameObject> 	m_rightItems = new List<GameObject>();
-	private AudioSource 		m_audioSource;
-	private AudioClip 			m_endGameSound;
-	private AudioClip 			m_slideSound;
+	private GameObject m_objects;
+	private SelectItemsManager m_selectItemsManager;
+	private PictureLoader m_pictureLoader;
+	private ShowReelScript m_showReel;
+	private int m_currentRow;
+	private List<RowScript> m_rows;
+	private List<string> m_currentThemes;
+	private List<GameObject> m_rightItems = new List<GameObject>();
+	private AudioSource m_audioSource;
+	private AudioClip m_endGameSound;
+	private AudioClip m_slideSound;
 
 	void Start () {
 	
