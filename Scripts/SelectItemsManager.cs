@@ -7,20 +7,20 @@ using System.Collections.Generic;
 /// </summary>
 public class SelectItemsManager : MonoBehaviour {
 
-	private GameObject 		m_itemHolder;
-	private GameObject 		m_cover;
-	private RowScript 		m_currentRowScript;
-	private Vector3 		m_correctItemPos;
-	private List<string> 	m_selectItemsNames;
-	private ShowReelScript 	m_showReel;
-	private RowsManager 	m_rowsManager;
+	private GameObject m_itemHolder;
+	private GameObject m_cover;
+	private RowScript m_currentRowScript;
+	private Vector3 m_correctItemPos;
+	private List<string> m_selectItemsNames;
+	private ShowReelScript m_showReel;
+	private RowsManager m_rowsManager;
 	private List<GameObject> m_selectItems;
-	private List<string> 	m_currentThemes;
-	private AudioSource 	m_audioSource;
-	private AudioClip 		m_coverSfx;
-	private AudioClip 		m_uncoverSfx;
-    private KinectGestureListener 	m_kinectGestureListener;
-    private KinectManager 			m_kinectManager;
+	private List<string> m_currentThemes;
+	private AudioSource m_audioSource;
+	private AudioClip m_coverSfx;
+	private AudioClip m_uncoverSfx;
+	private KinectGestureListener m_kinectGestureListener;
+	private KinectManager m_kinectManager;
     
 	void Start () {
 		
@@ -92,15 +92,15 @@ public class SelectItemsManager : MonoBehaviour {
 		string currentTheme = m_currentRowScript.GetThemeName();
 		
 		// Add it on used themes.
-        List<string> itemThemes = new List<string>();
+		List<string> itemThemes = new List<string>();
 
 		for (int i = 0; i < Constants.NUMBER_OF_SELECTABLE_ITEMS; i++) {
 			
 			string itemName;
-            string selectTheme = currentTheme;
-
-            GameObject item = (GameObject) Instantiate(m_itemHolder);
-            item.AddComponent<SelectItemScript>(); // selectable item.
+			string selectTheme = currentTheme;
+			
+			GameObject item = (GameObject) Instantiate(m_itemHolder);
+			item.AddComponent<SelectItemScript>(); // selectable item.
 			
 			// this is the item that matches.
 			if (randomItemPosition == i) {
@@ -109,19 +109,20 @@ public class SelectItemsManager : MonoBehaviour {
 				item.GetComponent<SelectItemScript>().SetUpItem(itemName, selectTheme, i, m_currentRowScript.gameObject.transform, m_showReel);
                 
 				m_selectItemsNames.Add(itemName);
-                correctItemPos = item.transform.position;
+				correctItemPos = item.transform.position;
 			}
 			// this is a random item.
 			else {
-				PictureLoader pictureLoader = GameObject.Find(Constants.PICTURE_LOADER_NAME).GetComponent<PictureLoader>();
+				GameObject pictureLoaderObject = GameObject.Find(Constants.PICTURE_LOADER_NAME);
+				PictureLoader pictureLoader = pictureLoaderObject.GetComponent<PictureLoader>();
 				
 				// Make sure it's not an item of the same theme! Item should be unique.
 				if(Game.SuperMode != Game.Difficulty.Hard)
 				{
 					do {
 						selectTheme = pictureLoader.SelectRandomTheme();
-	                } 
-	                while (selectTheme == currentTheme || itemThemes.IndexOf(selectTheme) != -1);
+					} 
+					while (selectTheme == currentTheme || itemThemes.IndexOf(selectTheme) != -1);
 					
 					itemName = pictureLoader.SelectRandomURL(selectTheme);
 				} 
@@ -131,7 +132,9 @@ public class SelectItemsManager : MonoBehaviour {
 					
 					do {
 						itemName = pictureLoader.SelectRandomURL(selectTheme);
-					} while (m_selectItemsNames.IndexOf(itemName) != -1 || itemName == m_currentRowScript.GetMissingElement());
+					} 
+					while (m_selectItemsNames.IndexOf(itemName) != -1 
+							|| itemName == m_currentRowScript.GetMissingElement());
 				}
 				
                 item.GetComponent<SelectItemScript>().SetUpItem(itemName, selectTheme, i, gameObject.transform, m_showReel);
