@@ -15,8 +15,8 @@ public class RowScript : MonoBehaviour {
 	private GameObject m_cover;
 	private GameObject m_cloudParticle;
 	private List<GameObject> m_items;
-    private List<GameObject> m_clouds;
-    private string m_themeName;
+	private List<GameObject> m_clouds;
+	private string m_themeName;
 	private Vector3 m_missingPosition;
 	private string m_missingElement;
 	private AudioClip m_coverSfx;
@@ -272,7 +272,8 @@ public class RowScript : MonoBehaviour {
 			
 			if (importer != null) {
 				object[] args = new object[2] { 0, 0 };
-				MethodInfo mi = typeof(TextureImporter).GetMethod("GetWidthAndHeight", BindingFlags.NonPublic | BindingFlags.Instance);
+				MethodInfo mi = typeof(TextureImporter).GetMethod("GetWidthAndHeight", 
+										BindingFlags.NonPublic | BindingFlags.Instance);
 				mi.Invoke(importer, args);
 				
 				width = (int)args[0];
@@ -311,7 +312,8 @@ public class RowScript : MonoBehaviour {
 		
 		for (int i = 0; i < m_clouds.Count; i++) {
 			
-			time = GetRandomNumber(Constants.CLOUD_TIME - Constants.CLOUD_TIME_RANGE, Constants.CLOUD_TIME + Constants.CLOUD_TIME_RANGE);
+			time = GetRandomNumber(Constants.CLOUD_TIME - Constants.CLOUD_TIME_RANGE, 
+									Constants.CLOUD_TIME + Constants.CLOUD_TIME_RANGE);
 			
 			m_clouds[i].GetComponent<ParticleSystem>().Play();
 			Vector3 currPos = m_clouds[i].transform.position;
@@ -327,10 +329,13 @@ public class RowScript : MonoBehaviour {
 		
 		for (int i = 0; i < m_clouds.Count; i++) {
 			
-			time = GetRandomNumber(Constants.CLOUD_TIME - Constants.CLOUD_TIME_RANGE, Constants.CLOUD_TIME + Constants.CLOUD_TIME_RANGE);
+			time = GetRandomNumber(Constants.CLOUD_TIME - Constants.CLOUD_TIME_RANGE, 
+									Constants.CLOUD_TIME + Constants.CLOUD_TIME_RANGE);
 			
 			Vector3 currPos = m_clouds[i].transform.position;
-			iTween.MoveTo(m_clouds[i], iTween.Hash("y", Constants.CLOUDS_LOWER_Y, "easeType", "easeInOutExpo", "time", time));
+			iTween.MoveTo(m_clouds[i], iTween.Hash("y", Constants.CLOUDS_LOWER_Y, 
+													"easeType", "easeInOutExpo", 
+													"time", time));
 			
 			StartCoroutine(DestroyCloud(m_clouds[i]));
 		}
@@ -352,14 +357,18 @@ public class RowScript : MonoBehaviour {
 		
 		m_audioSource.PlayOneShot(m_coverSfx);
 		
-		iTween.MoveBy(m_cover, new Vector3(Constants.COVER_MOVE_BY[(int)Game.Mode], 0, 0), Constants.CoverMoveTime);
+		iTween.MoveBy(m_cover, 
+						new Vector3(Constants.COVER_MOVE_BY[(int)Game.Mode], 0, 0), 
+						Constants.CoverMoveTime);
 	}
 	
 	public void UnCover() {
 		
 		m_audioSource.PlayOneShot(m_uncoverSfx);
 		
-		iTween.MoveBy(m_cover, new Vector3(-Constants.COVER_MOVE_BY[(int)Game.Mode], 0, 0), Constants.CoverMoveTime);
+		iTween.MoveBy(m_cover, 
+						new Vector3(-Constants.COVER_MOVE_BY[(int)Game.Mode], 0, 0), 
+						Constants.CoverMoveTime);
 	}
 	
 	public string GetMissingElement() {
